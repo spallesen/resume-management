@@ -7,78 +7,271 @@ angular.module('pabloApp')
 
  $scope.schema = {
   "type": "object",
-  "title": "Comment",
   "required": [
-    "comments"
+    "name",
+    "shoesizeLeft"
   ],
   "properties": {
-    "comments": {
-      "type": "array",
-      "maxItems": 2,
-      "items": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "title": "Name",
-            "type": "string"
-          },
-          "email": {
-            "title": "Email",
-            "type": "string",
-            "pattern": "^\\S+@\\S+$",
-            "description": "Email will be used for evil."
-          },
-          "spam": {
-            "title": "Spam",
-            "type": "boolean",
-            "default": true
-          },
-          "comment": {
-            "title": "Comment",
-            "type": "string",
-            "maxLength": 20,
-            "validationMessage": "Don't be greedy!"
-          }
+    "name": {
+      "title": "Name",
+      "description": "Gimme yea name lad",
+      "type": "string",
+      "pattern": "^[^/]*$",
+      "minLength": 2
+    },
+    "invitation": {
+      "type": "string",
+      "format": "html",
+      "title": "Invitation Design",
+      "description": "Design the invitation in full technicolor HTML"
+    },
+    "favorite": {
+      "title": "Favorite",
+      "type": "string",
+      "enum": [
+        "undefined",
+        "null",
+        "NaN"
+      ]
+    },
+    "shoesizeLeft": {
+      "title": "Shoe size (left)",
+      "default": 42,
+      "type": "number"
+    },
+    "shoesizeRight": {
+      "title": "Shoe size (right)",
+      "default": 42,
+      "type": "number"
+    },
+    "attributes": {
+      "type": "object",
+      "title": "Attributes",
+      "required": [
+        "eyecolor"
+      ],
+      "properties": {
+        "eyecolor": {
+          "type": "string",
+          "format": "color",
+          "title": "Eye color",
+          "default": "pink"
         },
-        "required": [
-          "name",
-          "comment"
+        "haircolor": {
+          "type": "string",
+          "title": "Hair color"
+        },
+        "shoulders": {
+          "type": "object",
+          "title": "Shoulders",
+          "properties": {
+            "left": {
+              "type": "string",
+              "title": "Left"
+            },
+            "right": {
+              "type": "string",
+              "title": "Right"
+            }
+          }
+        }
+      }
+    },
+    "things": {
+      "type": "array",
+      "title": "I like...",
+      "items": {
+        "type": "string",
+        "enum": [
+          "clowns",
+          "compiling",
+          "sleeping"
         ]
       }
+    },
+    "dislike": {
+      "type": "array",
+      "title": "I dislike...",
+      "items": {
+        "type": "string",
+        "title": "I hate"
+      }
+    },
+    "soul": {
+      "title": "Terms Of Service",
+      "description": "I agree to sell my undying <a href='https://www.youtube.com/watch?v=dQw4w9WgXcQ'>soul</a>",
+      "type": "boolean",
+      "default": true
+    },
+    "soulserial": {
+      "title": "Soul Serial No",
+      "type": "string"
+    },
+    "date": {
+      "title": "Date of party",
+      "type": "string",
+      "format": "date"
+    },
+    "radio": {
+      "title": "Radio type",
+      "type": "string",
+      "enum": [
+        "Transistor",
+        "Tube"
+      ]
+    },
+    "radio2": {
+      "title": "My Second Radio",
+      "type": "string",
+      "enum": [
+        "Transistor",
+        "Tube"
+      ]
+    },
+    "radiobuttons": {
+      "type": "string",
+      "enum": [
+        "Select me!",
+        "No me!"
+      ]
     }
   }
 };
 
 $scope.form = [
   {
-    "type": "help",
-    "helpvalue": "<h4>Array Example</h4><p>Try adding a couple of forms, reorder by drag'n'drop.</p>"
-  },
-  {
-    "key": "comments",
-    "add": "New",
-    "style": {
-      "add": "btn-success"
-    },
+    "type": "fieldset",
+    "title": "Stuff",
     "items": [
-      "comments[].name",
-      "comments[].email",
       {
-        "key": "comments[].spam",
-        "type": "checkbox",
-        "title": "Yes I want spam.",
-        "condition": "model.comments[arrayIndex].email"
-      },
-      {
-        "key": "comments[].comment",
-        "type": "textarea"
+        "type": "tabs",
+        "tabs": [
+          {
+            "title": "Simple stuff",
+            "items": [
+              {
+                "key": "name",
+                "placeholder": "Check the console",
+                "onChange": "log(modelValue)",
+                "feedback": "{'glyphicon': true, 'glyphicon-ok': hasSuccess(), 'glyphicon-star': !hasSuccess() }"
+              },
+              {
+                "key": "favorite",
+                "feedback": false
+              }
+            ]
+          },
+          {
+            "title": "More stuff",
+            "items": [
+              "attributes.eyecolor",
+              "attributes.haircolor",
+              {
+                "key": "attributes.shoulders.left",
+                "title": "Left shoulder",
+                "description": "This value is copied to attributes.shoulders.right in the model",
+                "copyValueTo": [
+                  "attributes.shoulders.right"
+                ]
+              },
+              {
+                "key": "shoesizeLeft",
+                "feedback": false,
+                "copyValueTo": [
+                  "shoesizeRight"
+                ]
+              },
+              {
+                "key": "shoesizeRight"
+              },
+              {
+                "key": "invitation",
+                "tinymceOptions": {
+                  "toolbar": [
+                    "undo redo| styleselect | bold italic | link image",
+                    "alignleft aligncenter alignright"
+                  ]
+                }
+              },
+              "things",
+              "dislike"
+            ]
+          }
+        ]
       }
     ]
   },
   {
-    "type": "submit",
-    "style": "btn-info",
-    "title": "OK"
+    "type": "help",
+    "helpvalue": "<hr>"
+  },
+  "soul",
+  {
+    "type": "conditional",
+    "condition": "modelData.soul",
+    "items": [
+      {
+        "key": "soulserial",
+        "placeholder": "ex. 666"
+      }
+    ]
+  },
+  {
+    "key": "date",
+    "minDate": "2014-06-20"
+  },
+  {
+    "key": "radio",
+    "type": "radios",
+    "titleMap": [
+      {
+        "value": "Transistor",
+        "name": "Transistor <br> Not the tube kind."
+      },
+      {
+        "value": "Tube",
+        "name": "Tube <br> The tube kind."
+      }
+    ]
+  },
+  {
+    "key": "radio2",
+    "type": "radios-inline",
+    "titleMap": [
+      {
+        "value": "Transistor",
+        "name": "Transistor <br> Not the tube kind."
+      },
+      {
+        "value": "Tube",
+        "name": "Tube <br> The tube kind."
+      }
+    ]
+  },
+  {
+    "key": "radiobuttons",
+    "style": {
+      "selected": "btn-success",
+      "unselected": "btn-default"
+    },
+    "type": "radiobuttons",
+    "notitle": true
+  },
+  {
+    "type": "actions",
+    "items": [
+      {
+        "type": "submit",
+        "style": "btn-info",
+        "title": "Do It!"
+      },
+      {
+        "type": "button",
+        "style": "btn-danger",
+        "title": "Noooooooooooo",
+        "onClick": "sayNo()"
+      }
+    ]
   }
 ];
 
