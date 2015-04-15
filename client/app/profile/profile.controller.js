@@ -65,67 +65,7 @@ angular.module('pabloApp')
   }
 };
 
-$scope.form = 
-[
-  "*"
-];
-
-/*[
-  {"type": "help",
-  "helpvalue": "<h1>Array Example</h1><p>Try adding a couple of forms, reorder by drag'n'drop.</p>"
-  },
-  {
-  key: "projects",
-  feedback: "{ 'glyphicon': true, 'glyphicon-asterisk': form.required && !hasSuccess() && !hasError() ,'glyphicon-ok': hasSuccess(), 'glyphicon-remove-circle': hasError() }",
-  placeholder: "This is where the project name goes",
-  "fieldAddonLeft": "@"
-  },
-  {"key": "comments",
-
-  "add": "New Comment",
-  "style": {
-    "add": "btn-success"
-  },
-
-    "items": [
-    "comments[].name",
-    "comments[].email",
-    {
-      "key": "comments[].spam",
-      "type": "checkbox",
-      "title": "Yes I want spam.",
-      "condition": "model.comments[arrayIndex].email"
-    },
-    {
-      "key": "comments[].comment",
-      "type": "textarea"
-    },
-    {
-      "key":"comments[].replies",
-      "type":"array",
-      "add": "New Reply",
-      "style": {
-        "add": "btn-warning"
-      },          
-      "items":[
-      "comments[].replies[].name",
-      "comments[].replies[].text"
-      ],"startEmpty": true
-    }
-
-    ],"startEmpty": true
-  },
-  {"type": "help",
-  "helpvalue": "<h4>Øj en deler</h4><p>What a strange language</p>"
-  },
-  {
-    "type": "submit",
-    "style": "btn-info",
-    "title": "OK"
-  }
-]*/
-
-
+$scope.form = ["*"];
 
 $scope.model = {};
 
