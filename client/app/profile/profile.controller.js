@@ -8,7 +8,7 @@ angular.module('pabloApp')
  $scope.schema = 
  {type: "object", title: "Comment", required: ["comments", "projects"],
   properties: {
-      title: {title:"Title", type:"string"},
+      projects: {title:"Title", type:"string"},
       surname: {type: "string", title:'Family name'},
       forename: {type: "string", title:'First name'}, 
 
@@ -47,8 +47,8 @@ angular.module('pabloApp')
 
 
 
-      comments: {"type": "array", "title": "Hay why", "maxItems": 2, "items": {"type": "object", "properties": {
-          "name": {"title": "Name", "type": "string", "description": "Yo please tell us your name", "validationMessage": "Hey you - whats your name?"},
+      comments: {"type": "array", "title": "Hay why???", "maxItems": 2, "items": {"type": "object", "properties": {
+          "name": {"title": "Name", "type": "string", "description": "Yo please tell us your name???", "validationMessage": "Hey you - whats your name?"},
           "email": {"title": "Email", "type": "string", "pattern": "^\\S+@\\S+$", "description": "Email will be used for evil."},
           "spam": {"title": "Spam", "type": "boolean", "default": true},
           "comment": {"title": "Comment", "type": "string", "maxLength": 20, "validationMessage": "Don't be greedy!"},
