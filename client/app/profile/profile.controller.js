@@ -10,11 +10,11 @@ angular.module('pabloApp')
   properties: {
       projects: {title:"Title", type:"string"},
       surname: {type: "string", title:'Family name'},
-      forename: {type: "string", title:'First name'}, 
+      forename: {type: "string", title:'First names'}, 
 
 
       addressline1: {type: 'string', title: 'Address'},      
-      addressline2: {type: 'string', title: 'Address'},           
+      addressline2: {type: 'string', title: null},           
       addressline4: {type: 'string', title: 'Address'},
       city: {type: 'string', title: 'City'},          
       postcode: {type: 'string', title: 'Postcode'},
@@ -65,7 +65,7 @@ angular.module('pabloApp')
   }
 };
 
-$scope.form = ["*"];
+$scope.form = ['*'];
 
 $scope.model = {};
 
