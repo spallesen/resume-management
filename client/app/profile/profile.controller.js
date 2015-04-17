@@ -3,12 +3,10 @@
 angular.module('pabloApp')
 .controller('ProfileCtrl', function ($scope) {
 
-
-
- $scope.schema = 
- {type: "object", title: "Comment", required: ["comments", "projects"],
-  properties: {
-      projects: {title:"Title", type:"string"},
+  $scope.schema = 
+    {type: "object", title: "Comment", required: ["comments", "projects"],
+    properties: {
+      title: {title:"Title", type:"string"},
       surname: {type: "string", title:'Family name'},
       forename: {type: "string", title:'First names'}, 
 
@@ -45,27 +43,165 @@ angular.module('pabloApp')
       primaryApplications: {type: 'string', title: 'Personal networks'},
       otherInformation: {type: 'string', title: 'otherInformation'},
 
+      workhistory: {type: "array", title: "Work history", 
+        items: {type: "object", properties: {
+          company: {title: "Company", type: "string", description: "Where did you work?"},
+          title: {title: "Email", type: "string"},
+          website: {title: "Website", type: "string"},
+          dateFrom: {title: "Date From", type: "string"},
+          dateTo: {title: "Date To", type: "string"},
+          jobDescription: {title: "Job Description", type: "string"},
+          hideOnCv: {type: 'boolean', title: 'Hide on CV'},
 
 
-      comments: {"type": "array", "title": "Hay why???", "maxItems": 2, "items": {"type": "object", "properties": {
-          "name": {"title": "Name", "type": "string", "description": "Yo please tell us your name???", "validationMessage": "Hey you - whats your name?"},
-          "email": {"title": "Email", "type": "string", "pattern": "^\\S+@\\S+$", "description": "Email will be used for evil."},
-          "spam": {"title": "Spam", "type": "boolean", "default": true},
-          "comment": {"title": "Comment", "type": "string", "maxLength": 20, "validationMessage": "Don't be greedy!"},
-          "replies": {"type": "array", "items": {"type":"object", "properties" : {
-              "name": {"title": "Name", "type":"string"},
-              "text": {"title":"Reply Text", "type":"string"}
-              }
-              }
+         projects: {type: "array", title: "Projects",
+            items: {type:"object", properties : {
+              projectName: {title: "Project name", type: "string"},
+              company: {title: "Company", type: "string"},
+              dateFrom: {title: "Date From", type: "string"},
+              dateTo: {title: "Date To", type: "string"},
+              projectDescription: {title: "Project Description", type:"string"},
+              hideOnCv: {type: "string", enum: ["No", "Yes"]}
+            }}
           }
-          },
-      "required": ["name", "comment"]
+        },
+      "required": ["jobDescription"]
       }
-      }
-  }
-};
+      },
 
-$scope.form = ['*'];
+    industryExperience: {type: "array", title: "Industry Experience", 
+      items: {type: "object", properties: {
+        company: {title: "Industry", type: "string"}
+      }}
+     }, 
+
+    skills: {type: "array", title: "Skills", 
+      items: {type: "object", properties: {
+        skillCategory: {title: "Skill Category", type: "string"},
+        skill: {title: "Skill", type: "string"}
+      }}
+    }, 
+
+    certification: {type: "array", title: "Certifications", 
+      items: {type: "object", properties: {
+        certificationName: {title: "Certification Name", type: "string"},
+        finishedDate: {title: "Finished Date", type: "string"}
+      }}
+    }, 
+
+    course: {type: "array", title: "Courses", 
+      items: {type: "object", properties: {
+        certificationName: {title: "Course Name", type: "string"},
+        finishedDate: {title: "Finished Date", type: "string"}
+      }}
+    }, 
+
+    geography: {type: "array", title: "Geography", 
+      items: {type: "object", properties: {
+        company: {title: "Geography", type: "string"}
+      }}
+     },
+
+    originalResume: {type: "array", title: "Original CV", 
+      items: {type: "object", properties: {
+        company: {title: "Original CV", type: "string"}
+      }}
+     },
+    
+    photo: {type: "array", title: "Photo", 
+      items: {type: "object", properties: {
+        company: {title: "Photo", type: "string"}
+      }}
+     }
+    }
+  };
+
+  $scope.form = [
+
+  {
+        type: "tabs",
+        tabs: [
+          {
+            title: "Account",
+            items: [
+              "title",
+              "surname",
+              "forename",
+              "addressline1",
+              "addressline2",
+              "addressline4",
+              "city",
+              "postcode",
+              "country",
+              "phone",
+              "eMail",
+              "availabilityFromDate",
+              "agent",
+              "terms",
+              "terms2"
+            ]
+          },
+          {
+            title: "Personal",
+            items: [
+              {
+              "key": "skills",
+              "type": "tabarray",
+              "tabType": "left",
+              "title": "My {{ value.skill }} is",
+              "items": [
+                "skills[].skillCategory",
+                "skills[].skill"
+                ]
+              }
+            ]
+          },
+           {
+            title: "Profile",
+            items: [
+              "tag"
+            ]
+          },
+           {
+            title: "Work History",
+            items: [
+              "tag"
+            ]
+          },
+           {
+            title: "Industries",
+            items: [
+              "tag"
+            ]
+          },
+           {
+            title: "Skills",
+            items: [
+              "tag"
+            ]
+          },
+           {
+            title: "Cerificates",
+            items: [
+              "tag"
+            ]
+          },
+           {
+            title: "Geography",
+            items: [
+              "tag"
+            ]
+          },
+          {
+            title: "CV & Photo",
+            items: [
+              "tag"
+            ]
+          }
+        ]
+      }
+
+];
 
 $scope.model = {};
 
