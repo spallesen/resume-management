@@ -3,6 +3,11 @@
 angular.module('pabloApp')
 .controller('ProfileCtrl', function ($scope) {
 
+
+
+
+
+
   $scope.schema = 
     {type: "object", title: "Comment", required: ["comments", "projects"],
     properties: {
@@ -117,7 +122,11 @@ angular.module('pabloApp')
   };
 
   $scope.form = [
-
+/*   {
+    "type": "help",
+    "helpvalue": "<h4></h4>"
+  },
+*/
   {
         type: "tabs",
         tabs: [
@@ -138,64 +147,87 @@ angular.module('pabloApp')
               "availabilityFromDate",
               "agent",
               "terms",
-              "terms2"
+              "terms2" 
+              
             ]
           },
           {
             title: "Personal",
             items: [
-              {
-              "key": "skills",
-              "type": "tabarray",
-              "tabType": "left",
-              "title": "My {{ value.skill }} is",
-              "items": [
-                "skills[].skillCategory",
-                "skills[].skill"
-                ]
-              }
+              "homePhone",
+              "skype",
+              "dateOfBirth",
+              "maritalStatus",
+              "showMarialStatusOnCv",
+              "ItExperienceSince",
+              "drivelLicense",
+              "car",
+              "customerClause",
+              "competitionClause"
             ]
           },
            {
             title: "Profile",
             items: [
-              "tag"
+              "title",
+              "consultantCategory",
+              "personalProfile",
+              "workExperience",
+              "primaryApplications",
+              "otherInformation"
             ]
           },
            {
             title: "Work History",
             items: [
-              "tag"
+              {key: "workhistory",
+              startEmpty: true,
+              /*notitle: true*/
+              }
             ]
           },
            {
             title: "Industries",
             items: [
-              "tag"
+              "industryExperience"
             ]
           },
            {
             title: "Skills",
-            items: [
-              "tag"
-            ]
+              items: [
+
+              "skills"
+/*                              {
+                "key": "skills",
+                "type": "tabarray",
+                "tabType": "left",
+                "title": "Technical Skills",
+                "items": [
+                  "skills[].skillCategory",
+                  "skills[].skill"
+                  ]
+                }*/
+            
+              ]
           },
            {
             title: "Cerificates",
             items: [
-              "tag"
+              "course",
+              "certification"
             ]
           },
            {
             title: "Geography",
             items: [
-              "tag"
+              "geography"
             ]
           },
           {
             title: "CV & Photo",
             items: [
-              "tag"
+              "originalResume",
+              "photo"
             ]
           }
         ]
@@ -218,6 +250,9 @@ $scope.onSubmit = function(form) {
 
     console.log($scope);
 
+    angular.element('.nav nav-tabs').attr('id', 'papie'); 
 
+/*('#someid').attr('name', 'value');*/
+/*.tabCollapse().schema-form-tabs css( "border", "13px solid red" )*/
 
   });
