@@ -9,7 +9,12 @@ angular.module('pabloApp')
     {
       'title': 'Profile',
       'link': '/profile'
-    }];
+    },
+    {
+      'title': 'Funky',
+      'link': '/funky'
+    }
+    ];
 
     $scope.isCollapsed = true;
     $scope.isLoggedIn = Auth.isLoggedIn;

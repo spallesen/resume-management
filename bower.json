@@ -18,7 +18,8 @@
     "tv4": "~1.0.15",
     "objectpath": "~1.1.0",
     "jquery-ui": ">=1.9",
-    "angular-ui-sortable": "~0.13.3"
+    "angular-ui-sortable": "~0.13.3",
+    "bootstrap-vertical-tabs": "~1.2.1"
   },
   "devDependencies": {
     "angular-mocks": ">=1.2.*",
